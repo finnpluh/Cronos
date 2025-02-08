@@ -18,8 +18,6 @@ namespace Cronos.Menu.Management.Watch
         public static bool animated = true;
         public static bool ghost_mode = false;
         public static bool ghost_rig = true;
-        public static bool steamvr = false;
         public static bool follow_theme = false;
-        public static TMP_FontAsset font = null;
     }
 }

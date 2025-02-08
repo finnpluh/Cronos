@@ -31,10 +31,15 @@ namespace Cronos.Menu.Mods.Visual
                             if (!cache.TryGetValue(vrrig.Creator.ActorNumber, out GameObject nametag))
                             {
                                 nametag = new GameObject();
+
                                 TextMeshPro indicator = nametag.AddComponent<TextMeshPro>();
-                                indicator.font = Cronos.Menu.Management.Watch.Settings.font;
+                                TextMeshPro motd = GameObject.Find("motdtext").GetComponent<TextMeshPro>();
+
+                                indicator.font = motd.font;
+                                indicator.characterSpacing = motd.characterSpacing;
                                 indicator.alignment = TextAlignmentOptions.Center;
                                 indicator.renderer.material.shader = Shader.Find("GUI/Text Shader");
+
                                 cache[vrrig.Creator.ActorNumber] = nametag;
                             }
 
@@ -46,7 +51,7 @@ namespace Cronos.Menu.Mods.Visual
                             if (text.text != display)
                                 text.text = display;
 
-                            text.fontSize = Vector3.Distance(vrrig.head.rigTarget.transform.position, GorillaLocomotion.Player.Instance.headCollider.transform.position) / 4.5f + vrrig.scaleFactor * 2;
+                            text.fontSize = distance / 4.5f + vrrig.scaleFactor * 2;
 
                             if (GorillaGameManager.instance.GameType() == GameModeType.Infection)
                             {
@@ -144,7 +149,7 @@ namespace Cronos.Menu.Mods.Visual
                             }
                             else
                                 if (nametag.layer != 0)
-                                nametag.layer = 0;
+                                    nametag.layer = 0;
                         }
                     }
                 }

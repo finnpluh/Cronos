@@ -34,7 +34,6 @@ namespace Cronos.Menu.Mods.Player
                 gun.Create(() =>
                 {
                     VRRig vrrig = gun.raycast.collider.GetComponentInParent<VRRig>();
-
                     if (!vrrig.isOfflineVRRig && !vrrig.isMyPlayer)
                     {
                         Button button = CronosButtonUtilities.GetButtonFromName("Log Player Gun");

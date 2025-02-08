@@ -76,9 +76,9 @@ namespace Cronos.Menu.Mods.Movement
             }
 
             if (GorillaLocomotion.Player.Instance.scale != amount)
-                GorillaLocomotion.Player.Instance.scale = amount;
+                GorillaLocomotion.Player.Instance.SetNativeScale(new NativeSizeChangerSettings { playerSizeScale = amount });
         }
 
-        public static void Cleanup() => GorillaLocomotion.Player.Instance.scale = 1f;
+        public static void Cleanup() => GorillaLocomotion.Player.Instance.SetNativeScale(new NativeSizeChangerSettings { playerSizeScale = 1f });
     }
 }

@@ -18,15 +18,18 @@ namespace Cronos.Menu.Mods.Visual
             "\n-Click <color=grey><RIGHT-SECONDARY></color> to toggle your current module's tooltip" +
             "\n-Click <color=grey><RIGHT-PRIMARY></color> to toggle your current module" +
             "\n<align=center>Contributors</align>" +
-            "\nFinn: <color=grey>Owner</color>, Blaku, Lars, & Misa: <color=grey>Helpers</color>";
+            "\n<color=grey>Finn, Lars, Misa, Blaku, & Ventern</color>";
         private static string changelog =
-            "-Added Spoof Monke Biz, Mod Checker, RPC Bypass, RPC Uncapper, Reach, Graphics, & Wall Walk" +
-            "\n-Added a notification when you get master client" +
-            "\n-Changed watch interface to fit more text" +
-            "\n-Changed the stock theme to the Discord server colors" +
-            "\n-Notifications now pivot to the bottom left & have titles" +
-            "\n-Moved Cronos Sense to category Modders" +
-            "\n-Renamed \"Log Color Gun\" to \"Log Player Gun\" and added modes (ID, Color, Items)";
+            "-Added Monkeye Gun, Monkeye All, Fling Rope Gun, Fling Ropes All, Spam Team Color, Reset Soccer Game, & Set Soccer Score" +
+            "\n-Added Grace Period patches (Ventern)" +
+            "\n-Added Ventern to contributors text" +
+            "\n-Added categories" +
+            "\n-Added Unsafe mod detections" +
+            "\n-Fixed blurry text (Nametags, Notifications, etc)" +
+            "\n-Remade Notifications" +
+            "\n-Removed Utilla dependency" +
+            "\n-Removed Lars from contributors text" +
+            "\n-Removed category text on buttons";
         private static string previous = string.Empty;
         private static string motd = string.Empty;
         private static List<GameObject> gameobjects = new List<GameObject>();

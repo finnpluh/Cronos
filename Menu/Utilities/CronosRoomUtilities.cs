@@ -15,5 +15,15 @@ namespace Cronos.Menu.Utilities
                 return true;
             return false;
         }
+
+        public static bool InRoom()
+        {
+            return PhotonNetwork.InRoom;
+        }
+
+        public static bool IsMasterClient(NetPlayer player)
+        {
+            return player.IsMasterClient;
+        }
     }
 }

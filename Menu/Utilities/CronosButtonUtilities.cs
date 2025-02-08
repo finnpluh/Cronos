@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Cronos.Menu.Utilities
 {
@@ -14,9 +15,10 @@ namespace Cronos.Menu.Utilities
         {
             Button button = null;
             if (button == null)
-                foreach (Button buttons in Cronos.Menu.Management.Watch.Cronos.modules)
-                    if (buttons.title == name)
-                        button = buttons;
+                foreach (Button[] modules in Cronos.Menu.Management.Watch.Cronos.pages)
+                    foreach (Button module in modules)
+                        if (module.title == name)
+                            button = module;
             return button;
         }
     }

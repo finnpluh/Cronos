@@ -7,6 +7,7 @@ using static UnityEngine.Rendering.DebugUI;
 using UnityEngine.XR;
 using Valve.VR;
 using Cronos.Menu.Management.Watch;
+using UnityEngine;
 
 namespace Cronos.Menu.Utilities
 {
@@ -15,7 +16,7 @@ namespace Cronos.Menu.Utilities
         public static bool leftStick()
         {
             bool output;
-            if (Settings.steamvr)
+            if (GameObject.Find("[SteamVR]") != null)
                 output = SteamVR_Actions.gorillaTag_LeftJoystickClick.GetState(SteamVR_Input_Sources.LeftHand);
             else
                 InputDevices.GetDeviceAtXRNode(XRNode.LeftHand).TryGetFeatureValue(CommonUsages.primary2DAxisClick, out output);
@@ -45,7 +46,7 @@ namespace Cronos.Menu.Utilities
         public static bool rightStick()
         {
             bool output;
-            if (Settings.steamvr)
+            if (GameObject.Find("[SteamVR]") != null)
                 output = SteamVR_Actions.gorillaTag_RightJoystickClick.GetState(SteamVR_Input_Sources.RightHand);
             else
                 InputDevices.GetDeviceAtXRNode(XRNode.RightHand).TryGetFeatureValue(CommonUsages.primary2DAxisClick, out output);

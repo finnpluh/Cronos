@@ -4,10 +4,9 @@ namespace Cronos.Menu.Management.Watch
 {
     public class Button
     {
-        public enum Statuses { Functional, Broken }
+        public enum Statuses { Functional, Broken, Unsafe }
         public string title { get; set; }
         public string[] options { get; set; }
-        public string category { get; set; }
         public string tooltip { get; set; }
         public bool toggled { get; set; }
         public bool blatant { get; set; }

@@ -23,17 +23,20 @@ namespace Cronos.Menu.Mods.Saftey
                 Cronos.Menu.Management.Watch.Settings.ghost_mode = true;
             }
 
-            foreach (Button module in Cronos.Menu.Management.Watch.Cronos.modules)
+            foreach (Button[] modules in Cronos.Menu.Management.Watch.Cronos.pages)
             {
-                if (module.isToggleable)
+                foreach (Button module in modules)
                 {
-                    if (module.blatant)
+                    if (module.isToggleable)
                     {
-                        if (module.toggled)
+                        if (module.blatant)
                         {
-                            if (module.disableAction != null)
-                                module.disableAction();
-                            module.toggled = false;
+                            if (module.toggled)
+                            {
+                                if (module.disableAction != null)
+                                    module.disableAction();
+                                module.toggled = false;
+                            }
                         }
                     }
                 }

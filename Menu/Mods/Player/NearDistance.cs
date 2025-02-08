@@ -28,13 +28,18 @@ namespace Cronos.Menu.Mods.Player
                     {
                         parent = new GameObject("Near Distance - Cronos");
                         indicator = parent.AddComponent<TextMeshPro>();
-                        indicator.fontSize = 1f;
-                        indicator.font = Cronos.Menu.Management.Watch.Settings.font;
+
+                        TextMeshPro motd = GameObject.Find("motdtext").GetComponent<TextMeshPro>();
+
+                        indicator.font = motd.font;
+                        indicator.characterSpacing = motd.characterSpacing;
                         indicator.alignment = TextAlignmentOptions.Center;
+                        indicator.lineSpacing = 25f;
+                        indicator.fontSize = 1f;
                     }
                     else
                     {
-                        if (Cronos.Menu.Management.Watch.Settings.ghost_mode)
+                        if (CronosButtonUtilities.GetButtonFromName("Full Ghost Mode").toggled)
                         {
                             if (parent.layer != 19)
                                 parent.layer = 19;
