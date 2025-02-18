@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Cronos.Menu.Management.Watch.Preferences;
+using static Cronos.Menu.Management.Watch.Cronos;
 
 namespace Cronos.Menu.Mods.Saftey
 {
@@ -14,16 +16,24 @@ namespace Cronos.Menu.Mods.Saftey
     {
         public static void Run()
         {
-            if (!Cronos.Menu.Management.Watch.Settings.ghost_mode)
+            if (!preferences[1])
             {
-                Cronos.Menu.Management.Watch.Settings.volume = 0f;
-                Cronos.Menu.Management.Watch.Cronos.watch.layer = 19;
-                Cronos.Menu.Management.Watch.Cronos.screen.layer = 19;
-                Cronos.Menu.Management.Watch.Cronos.watch.transform.Find("HuntWatch_ScreenLocal").Find("Canvas").gameObject.layer = 19;
-                Cronos.Menu.Management.Watch.Settings.ghost_mode = true;
+                if (volume != 0f)
+                    volume = 0f;
+
+                if (watch.layer != 19)
+                    watch.layer = 19;
+
+                if (screen.layer != 19)
+                    screen.layer = 19;
+
+                if (watch.transform.Find("HuntWatch_ScreenLocal").Find("Canvas").gameObject.layer != 19)
+                    watch.transform.Find("HuntWatch_ScreenLocal").Find("Canvas").gameObject.layer = 19;
+
+                preferences[1] = true;
             }
 
-            foreach (Button[] modules in Cronos.Menu.Management.Watch.Cronos.pages)
+            foreach (Button[] modules in pages)
             {
                 foreach (Button module in modules)
                 {
@@ -45,12 +55,18 @@ namespace Cronos.Menu.Mods.Saftey
 
         public static void Cleanup()
         {
-            if (Cronos.Menu.Management.Watch.Settings.ghost_mode)
+            if (preferences[1])
             {
-                Cronos.Menu.Management.Watch.Cronos.watch.layer = 0;
-                Cronos.Menu.Management.Watch.Cronos.screen.layer = 0;
-                Cronos.Menu.Management.Watch.Cronos.watch.transform.Find("HuntWatch_ScreenLocal").Find("Canvas").gameObject.layer = 0;
-                Cronos.Menu.Management.Watch.Settings.ghost_mode = false;
+                if (watch.layer != 0)
+                    watch.layer = 0;
+
+                if (screen.layer != 0)
+                    screen.layer = 0;
+
+                if (watch.transform.Find("HuntWatch_ScreenLocal").Find("Canvas").gameObject.layer != 0)
+                    watch.transform.Find("HuntWatch_ScreenLocal").Find("Canvas").gameObject.layer = 0;
+
+                preferences[1] = false;
             }
         }
     }

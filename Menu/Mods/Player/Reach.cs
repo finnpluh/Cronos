@@ -11,42 +11,49 @@ using UnityEngine;
 
 namespace Cronos.Menu.Mods.Player
 {
-    [HarmonyPatch(typeof(GorillaTagger), "sphereCastRadius", MethodType.Getter)]
-    public class Reach : MonoBehaviour
+    public class Reach
     {
-        private static void Postfix(GorillaTagger __instance, ref float __result)
+        private static float amount;
+
+        public static void Run()
         {
             Button button = CronosButtonUtilities.GetButtonFromName("Reach");
-            if (button.toggled)
+            switch (button.optionIndex)
             {
-                switch (button.optionIndex)
-                {
-                    case 0:
-                        if (__result != 0.3f)
-                            __result = 0.3f;
-                        break;
-                    case 1:
-                        if (__result != 0.4f)
-                            __result = 0.4f;
-                        break;
-                    case 2:
-                        if (__result != 0.5f)
-                            __result = 0.5f;
-                        break;
-                    case 3:
-                        if (__result != 0.6f)
-                            __result = 0.6f;
-                        break;
-                    case 4:
-                        if (__result != 0.7f)
-                            __result = 0.7f;
-                        break;
-                    case 5:
-                        if (__result != 0.8f)
-                            __result = 0.8f;
-                        break;
-                }
+                case 0:
+                    if (amount != 0.3f)
+                        amount = 0.3f;
+                    break;
+                case 1:
+                    if (amount != 0.4f)
+                        amount = 0.4f;
+                    break;
+                case 2:
+                    if (amount != 0.5f)
+                        amount = 0.5f;
+                    break;
+                case 3:
+                    if (amount != 0.6f)
+                        amount = 0.6f;
+                    break;
+                case 4:
+                    if (amount != 0.7f)
+                        amount = 0.7f;
+                    break;
+                case 5:
+                    if (amount != 0.8f)
+                        amount = 0.8f;
+                    break;
             }
+
+            if (GorillaTagger.Instance.sphereCastRadius != amount)
+                GorillaTagger.Instance.SetTagRadiusOverrideThisFrame(amount);
+        }
+
+        public static void Cleanup()
+        {
+            if (GorillaTagger.Instance.sphereCastRadius != 0.03f)
+                GorillaTagger.Instance.SetTagRadiusOverrideThisFrame(0.03f);
         }
     }
 }

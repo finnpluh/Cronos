@@ -1,19 +1,18 @@
-﻿using Cronos.Menu.Libraries;
-using Cronos.Menu.Management.Watch;
-using Cronos.Menu.Utilities;
+﻿using Cronos.Menu.Utilities;
 using GorillaGameModes;
 using Photon.Pun;
+using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
-using UnityEngine.ProBuilder;
-using UnityEngine.UIElements;
-using static Drawing.Palette.Colorbrewer;
 
 namespace Cronos.Menu.Mods.Visual
 {
-    public class Nametags
+    public class DistanceText
     {
         private static Dictionary<int, GameObject> cache = new Dictionary<int, GameObject>();
 
@@ -45,13 +44,7 @@ namespace Cronos.Menu.Mods.Visual
 
                             TextMeshPro text = parent.GetComponent<TextMeshPro>();
                             float distance = Vector3.Distance(vrrig.head.rigTarget.transform.position, GorillaLocomotion.Player.Instance.headCollider.transform.position);
-                            float opacity = distance < 12f ? 0.75f : 0.2f;
-                            string display = CronosButtonUtilities.GetButtonFromName("Nametags").optionIndex == 0? vrrig.Creator.NickName : vrrig.Creator.NickName + $"\n<size={text.fontSize / 2}><color=grey>({Mathf.RoundToInt(distance)}M) </color><color=white>{Mathf.Floor(vrrig.playerColor.r * 9f)}, {Mathf.Floor(vrrig.playerColor.g * 9f)}, {Mathf.Floor(vrrig.playerColor.b * 9f)}</color>";
-
-                            if (text.text != display)
-                                text.text = display;
-
-                            text.fontSize = distance / 4.5f + vrrig.scaleFactor * 2;
+                            float opacity = 0.2f;
 
                             if (GorillaGameManager.instance.GameType() == GameModeType.Infection)
                             {
@@ -138,7 +131,10 @@ namespace Cronos.Menu.Mods.Visual
                                 }
                             }
 
-                            parent.transform.position = vrrig.head.rigTarget.transform.position + new Vector3(0f, Vector3.Distance(vrrig.head.rigTarget.transform.position, GorillaLocomotion.Player.Instance.headCollider.transform.position) / 20f + 0.5f * vrrig.scaleFactor, 0f);
+                            text.text = $"{Mathf.RoundToInt(distance)}M";
+                            text.fontSize = distance / 6f + vrrig.scaleFactor * 2;
+
+                            parent.transform.position = vrrig.bodyTransform.transform.position + vrrig.bodyTransform.transform.right * (Vector3.Distance(vrrig.bodyTransform.transform.position, GorillaLocomotion.Player.Instance.headCollider.transform.position) / 20f + 0.5f * vrrig.scaleFactor);
                             parent.transform.LookAt(Camera.main.transform);
                             parent.transform.Rotate(0f, 180f, 0f);
 

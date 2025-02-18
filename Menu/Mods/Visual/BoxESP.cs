@@ -1,19 +1,19 @@
-﻿using Cronos.Menu.Libraries;
-using Cronos.Menu.Management.Watch;
+﻿using Cronos.Menu.Management.Watch;
 using Cronos.Menu.Utilities;
+using g3;
 using GorillaGameModes;
 using Photon.Pun;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
+using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.ProBuilder;
 using UnityEngine.UIElements;
-using static Drawing.Palette.Colorbrewer;
 
 namespace Cronos.Menu.Mods.Visual
 {
-    public class Nametags
+    public class BoxESP
     {
         private static Dictionary<int, GameObject> cache = new Dictionary<int, GameObject>();
 
@@ -27,31 +27,38 @@ namespace Cronos.Menu.Mods.Visual
                     {
                         if (vrrig.colorInitialized)
                         {
+                            float opacity = 0.75f;
                             VRRigManager.FixVRRigColors(vrrig);
                             if (!cache.TryGetValue(vrrig.Creator.ActorNumber, out GameObject parent))
                             {
                                 parent = new GameObject();
+                                LineRenderer renderer = parent.AddComponent<LineRenderer>();
 
-                                TextMeshPro indicator = parent.AddComponent<TextMeshPro>();
-                                TextMeshPro nametag = GorillaTagger.Instance.offlineVRRig.playerText1;
-
-                                indicator.font = nametag.font;
-                                indicator.characterSpacing = nametag.characterSpacing;
-                                indicator.alignment = TextAlignmentOptions.Center;
-                                indicator.renderer.material.shader = Shader.Find("GUI/Text Shader");
+                                renderer.useWorldSpace = true;
+                                renderer.loop = true;
+                                renderer.positionCount = 5;
+                                renderer.startWidth = 0.035f;
+                                renderer.endWidth = 0.035f;
+                                renderer.material.shader = Shader.Find("GUI/Text Shader");
 
                                 cache[vrrig.Creator.ActorNumber] = parent;
                             }
 
-                            TextMeshPro text = parent.GetComponent<TextMeshPro>();
-                            float distance = Vector3.Distance(vrrig.head.rigTarget.transform.position, GorillaLocomotion.Player.Instance.headCollider.transform.position);
-                            float opacity = distance < 12f ? 0.75f : 0.2f;
-                            string display = CronosButtonUtilities.GetButtonFromName("Nametags").optionIndex == 0? vrrig.Creator.NickName : vrrig.Creator.NickName + $"\n<size={text.fontSize / 2}><color=grey>({Mathf.RoundToInt(distance)}M) </color><color=white>{Mathf.Floor(vrrig.playerColor.r * 9f)}, {Mathf.Floor(vrrig.playerColor.g * 9f)}, {Mathf.Floor(vrrig.playerColor.b * 9f)}</color>";
+                            LineRenderer line = parent.GetComponent<LineRenderer>();
+                            float distance = vrrig.scaleFactor + Vector3.Distance(GorillaTagger.Instance.bodyCollider.transform.position, vrrig.bodyTransform.transform.position) / 45;
 
-                            if (text.text != display)
-                                text.text = display;
+                            Vector3 forward = (vrrig.head.rigTarget.transform.position - Camera.main.transform.position).normalized * (distance / 2);
+                            Vector3 right = Vector3.Cross(Vector3.up, forward).normalized * (distance / 2);
+                            Vector3 up = Vector3.Cross(forward, right).normalized * (distance / 2);
 
-                            text.fontSize = distance / 4.5f + vrrig.scaleFactor * 2;
+                            line.SetPosition(0, vrrig.head.rigTarget.transform.position + -right + up);
+                            line.SetPosition(1, vrrig.head.rigTarget.transform.position + right + up);
+                            line.SetPosition(2, vrrig.head.rigTarget.transform.position + right + -up);
+                            line.SetPosition(3, vrrig.head.rigTarget.transform.position + -right + -up);
+                            line.SetPosition(4, vrrig.head.rigTarget.transform.position + -right + up);
+
+                            parent.transform.position = vrrig.head.rigTarget.transform.position;
+                            parent.transform.LookAt(Camera.main.transform);
 
                             if (GorillaGameManager.instance.GameType() == GameModeType.Infection)
                             {
@@ -65,13 +72,19 @@ namespace Cronos.Menu.Mods.Visual
 
                                 if (VRRigManager.VRRigIsTagged(vrrig))
                                 {
-                                    if (text.color != infected)
-                                        text.color = infected;
+                                    if (line.startColor != infected)
+                                        line.startColor = infected;
+
+                                    if (line.endColor != infected)
+                                        line.endColor = infected;
                                 }
                                 else
                                 {
-                                    if (text.color != normal)
-                                        text.color = normal;
+                                    if (line.startColor != normal)
+                                        line.startColor = normal;
+
+                                    if (line.endColor != normal)
+                                        line.endColor = normal;
                                 }
                             }
                             else if (GorillaGameManager.instance.GameType() == GameModeType.Casual || GorillaGameManager.instance.GameType() == GameModeType.Guardian)
@@ -80,8 +93,11 @@ namespace Cronos.Menu.Mods.Visual
                                 if (skin.a != opacity)
                                     skin.a = opacity;
 
-                                if (text.color != skin)
-                                    text.color = skin;
+                                if (line.startColor != skin)
+                                    line.startColor = skin;
+
+                                if (line.endColor != skin)
+                                    line.endColor = skin;
                             }
                             else if (GorillaGameManager.instance.GameType() == GameModeType.Paintbrawl)
                             {
@@ -97,23 +113,35 @@ namespace Cronos.Menu.Mods.Visual
 
                                 if (vrrig.mainSkin.material.name.Contains("bluealive") || vrrig.mainSkin.material.name.Contains("bluehit") || vrrig.mainSkin.material.name.Contains("bluestunned"))
                                 {
-                                    if (text.color != blue)
-                                        text.color = blue;
+                                    if (line.startColor != blue)
+                                        line.startColor = blue;
+
+                                    if (line.endColor != blue)
+                                        line.endColor = blue;
                                 }
                                 else if (vrrig.mainSkin.material.name.Contains("orangealive") || vrrig.mainSkin.material.name.Contains("orangehit") || vrrig.mainSkin.material.name.Contains("orangestanned"))
                                 {
-                                    if (text.color != orange)
-                                        text.color = orange;
+                                    if (line.startColor != orange)
+                                        line.startColor = orange;
+
+                                    if (line.endColor != orange)
+                                        line.endColor = orange;
                                 }
                                 else if (vrrig.mainSkin.material.name.Contains("paintsplattersmallblue"))
                                 {
-                                    if (text.color != new Color(blue.r / divisor, blue.g / divisor, blue.b / divisor, blue.a))
-                                        text.color = new Color(blue.r / divisor, blue.g / divisor, blue.b / divisor, blue.a);
+                                    if (line.startColor != new Color(blue.r / divisor, blue.g / divisor, blue.b / divisor, blue.a))
+                                        line.startColor = new Color(blue.r / divisor, blue.g / divisor, blue.b / divisor, blue.a);
+
+                                    if (line.endColor != new Color(blue.r / divisor, blue.g / divisor, blue.b / divisor, blue.a))
+                                        line.endColor = new Color(blue.r / divisor, blue.g / divisor, blue.b / divisor, blue.a);
                                 }
                                 else if (vrrig.mainSkin.material.name.Contains("paintsplattersmallorange"))
                                 {
-                                    if (text.color != new Color(orange.r / divisor, orange.g / divisor, orange.b / divisor, orange.a))
-                                        text.color = new Color(orange.r / divisor, orange.g / divisor, orange.b / divisor, orange.a);
+                                    if (line.startColor != new Color(orange.r / divisor, orange.g / divisor, orange.b / divisor, orange.a))
+                                        line.startColor = new Color(orange.r / divisor, orange.g / divisor, orange.b / divisor, orange.a);
+
+                                    if (line.endColor != new Color(orange.r / divisor, orange.g / divisor, orange.b / divisor, orange.a))
+                                        line.endColor = new Color(orange.r / divisor, orange.g / divisor, orange.b / divisor, orange.a);
                                 }
                             }
                             else if (GorillaGameManager.instance.GameType() == GameModeType.FreezeTag)
@@ -128,19 +156,21 @@ namespace Cronos.Menu.Mods.Visual
 
                                 if (vrrig.mainSkin.material.name.Contains("Ice_Body"))
                                 {
-                                    if (text.color != frozen)
-                                        text.color = frozen;
+                                    if (line.startColor != frozen)
+                                        line.startColor = frozen;
+
+                                    if (line.endColor != frozen)
+                                        line.endColor = frozen;
                                 }
                                 else
                                 {
-                                    if (text.color != alive)
-                                        text.color = alive;
+                                    if (line.startColor != alive)
+                                        line.startColor = alive;
+
+                                    if (line.endColor != alive)
+                                        line.endColor = alive;
                                 }
                             }
-
-                            parent.transform.position = vrrig.head.rigTarget.transform.position + new Vector3(0f, Vector3.Distance(vrrig.head.rigTarget.transform.position, GorillaLocomotion.Player.Instance.headCollider.transform.position) / 20f + 0.5f * vrrig.scaleFactor, 0f);
-                            parent.transform.LookAt(Camera.main.transform);
-                            parent.transform.Rotate(0f, 180f, 0f);
 
                             if (Cronos.Menu.Management.Watch.Preferences.preferences[1])
                             {
@@ -169,8 +199,8 @@ namespace Cronos.Menu.Mods.Visual
 
         public static void Cleanup()
         {
-            foreach (var nametag in cache.Values)
-                GameObject.Destroy(nametag);
+            foreach (var tracer in cache.Values)
+                GameObject.Destroy(tracer);
             cache.Clear();
         }
     }

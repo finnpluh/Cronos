@@ -24,7 +24,7 @@ namespace Cronos.Menu.Mods.Visual
                     if (renderer.material.shader != Shader.Find("GorillaTag/UberShader"))
                         renderer.material.shader = Shader.Find("GorillaTag/UberShader");
 
-                    Color color = Cronos.Menu.Management.Watch.Settings.follow_theme ? Cronos.Menu.Management.Watch.Cronos.theme : Color.HSVToRGB(Mathf.PingPong(Time.time * 0.5f, 1f), 1f, 1f);
+                    Color color = Cronos.Menu.Management.Watch.Preferences.preferences[3] ? Cronos.Menu.Management.Watch.Cronos.theme : Color.HSVToRGB(Mathf.PingPong(Time.time * 0.5f, 1f), 1f, 1f);
                     renderer.material.color = color;
                 }
             }

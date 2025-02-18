@@ -14,18 +14,9 @@ namespace Cronos.Menu.Patches.MonoBehaviourPunCallbackPatches
     [HarmonyPatch(typeof(MonoBehaviourPunCallbacks), "OnPlayerLeftRoom")]
     public class OnPlayerLeftRoomPatch : MonoBehaviour
     {
-        private static Player player;
-
         private static void Prefix(Player otherPlayer)
         {
-            if (otherPlayer != PhotonNetwork.LocalPlayer)
-            {
-                if (otherPlayer != player)
-                {
-                    Notifications.Send("<color=red>Room</color>", $"Leave: {otherPlayer.NickName}");
-                    player = otherPlayer;
-                }
-            }
+            Notifications.Send("LEAVE", $"Name: {otherPlayer.NickName}", Color.red);
         }
     }
 }

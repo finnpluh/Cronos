@@ -35,7 +35,7 @@ namespace Cronos.Menu.Mods.Visual
                                 if (infected.a != opactity)
                                     infected.a = opactity;
 
-                                Color normal = Cronos.Menu.Management.Watch.Settings.follow_theme ? Cronos.Menu.Management.Watch.Cronos.theme : Color.green;
+                                Color normal = Cronos.Menu.Management.Watch.Preferences.preferences[3] ? Cronos.Menu.Management.Watch.Cronos.theme : Color.green;
                                 if (normal.a != opactity)
                                     normal.a = opactity;
 
@@ -52,7 +52,7 @@ namespace Cronos.Menu.Mods.Visual
                             }
                             else if (GorillaGameManager.instance.GameType() == GameModeType.Casual || GorillaGameManager.instance.GameType() == GameModeType.Guardian)
                             {
-                                Color skin = Cronos.Menu.Management.Watch.Settings.follow_theme? Cronos.Menu.Management.Watch.Cronos.theme : vrrig.playerColor;
+                                Color skin = Cronos.Menu.Management.Watch.Preferences.preferences[3] ? Cronos.Menu.Management.Watch.Cronos.theme : vrrig.playerColor;
                                 if (skin.a != opactity)
                                     skin.a = opactity;
 
@@ -94,7 +94,7 @@ namespace Cronos.Menu.Mods.Visual
                             }
                             else if (GorillaGameManager.instance.GameType() == GameModeType.FreezeTag)
                             {
-                                Color alive = Cronos.Menu.Management.Watch.Settings.follow_theme ? Cronos.Menu.Management.Watch.Cronos.theme : Color.green;
+                                Color alive = Cronos.Menu.Management.Watch.Preferences.preferences[3] ? Cronos.Menu.Management.Watch.Cronos.theme : Color.green;
                                 if (alive.a != opactity)
                                     alive.a = opactity;
 

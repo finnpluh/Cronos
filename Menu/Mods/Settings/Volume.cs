@@ -16,37 +16,37 @@ namespace Cronos.Menu.Mods.Settings
             switch (volume.optionIndex)
             {
                 case 0:
-                    Cronos.Menu.Management.Watch.Settings.volume = 0f;
+                    Cronos.Menu.Management.Watch.Preferences.volume = 0f;
                     break;
                 case 1:
-                    Cronos.Menu.Management.Watch.Settings.volume = 0.1f;
+                    Cronos.Menu.Management.Watch.Preferences.volume = 0.1f;
                     break;
                 case 2:
-                    Cronos.Menu.Management.Watch.Settings.volume = 0.2f;
+                    Cronos.Menu.Management.Watch.Preferences.volume = 0.2f;
                     break;
                 case 3:
-                    Cronos.Menu.Management.Watch.Settings.volume = 0.3f;
+                    Cronos.Menu.Management.Watch.Preferences.volume = 0.3f;
                     break;
                 case 4:
-                    Cronos.Menu.Management.Watch.Settings.volume = 0.4f;
+                    Cronos.Menu.Management.Watch.Preferences.volume = 0.4f;
                     break;
                 case 5:
-                    Cronos.Menu.Management.Watch.Settings.volume = 0.5f;
+                    Cronos.Menu.Management.Watch.Preferences.volume = 0.5f;
                     break;
                 case 6:
-                    Cronos.Menu.Management.Watch.Settings.volume = 0.6f;
+                    Cronos.Menu.Management.Watch.Preferences.volume = 0.6f;
                     break;
                 case 7:
-                    Cronos.Menu.Management.Watch.Settings.volume = 0.7f;
+                    Cronos.Menu.Management.Watch.Preferences.volume = 0.7f;
                     break;
                 case 8:
-                    Cronos.Menu.Management.Watch.Settings.volume = 0.8f;
+                    Cronos.Menu.Management.Watch.Preferences.volume = 0.8f;
                     break;
                 case 9:
-                    Cronos.Menu.Management.Watch.Settings.volume = 0.9f;
+                    Cronos.Menu.Management.Watch.Preferences.volume = 0.9f;
                     break;
                 case 10:
-                    Cronos.Menu.Management.Watch.Settings.volume = 1f;
+                    Cronos.Menu.Management.Watch.Preferences.volume = 1f;
                     break;
             }
         }

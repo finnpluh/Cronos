@@ -1,4 +1,5 @@
-﻿using Cronos.Menu.Management.Watch;
+﻿using Cronos.Menu.Libraries;
+using Cronos.Menu.Management.Watch;
 using Cronos.Menu.Mods.Settings;
 using Cronos.Menu.Utilities;
 using Photon.Pun;
@@ -29,10 +30,10 @@ namespace Cronos.Menu.Mods.Player
                         parent = new GameObject("Near Distance - Cronos");
                         indicator = parent.AddComponent<TextMeshPro>();
 
-                        TextMeshPro motd = GameObject.Find("motdtext").GetComponent<TextMeshPro>();
+                        TextMeshPro nametag = GorillaTagger.Instance.offlineVRRig.playerText1;
 
-                        indicator.font = motd.font;
-                        indicator.characterSpacing = motd.characterSpacing;
+                        indicator.font = nametag.font;
+                        indicator.characterSpacing = nametag.characterSpacing;
                         indicator.alignment = TextAlignmentOptions.Center;
                         indicator.lineSpacing = 25f;
                         indicator.fontSize = 1f;

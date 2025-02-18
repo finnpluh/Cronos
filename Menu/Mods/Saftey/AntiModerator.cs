@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Cronos.Menu.Mods.Saftey
 {
@@ -21,7 +22,7 @@ namespace Cronos.Menu.Mods.Saftey
                     {
                         if (vrrig.concatStringOfCosmeticsAllowed.Contains("LBAAK"))
                         {
-                            Notifications.Send("<color=purple>Anti Moderator</color>", "Disconnected, Moderator was in lobby");
+                            Notifications.Send("CRONOS", "Disconnected, Moderator was in lobby", Color.magenta);
                             NetworkSystem.Instance.ReturnToSinglePlayer();
                         }
                     }

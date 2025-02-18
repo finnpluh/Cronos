@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Cronos.Menu.Mods.Settings
 {
@@ -52,7 +53,7 @@ namespace Cronos.Menu.Mods.Settings
             }
 
             File.WriteAllText(path, JsonConvert.SerializeObject(data, Formatting.Indented));
-            Notifications.Send("<color=blue>Configuration</color>", $"Configuration saved");
+            Notifications.Send("SUCCESS", $"Configuration saved", Color.green);
         }
 
         private static void Load()
@@ -81,19 +82,16 @@ namespace Cronos.Menu.Mods.Settings
                                             if (module.disableAction != null)
                                                 module.disableAction();
 
-                                    Notifications.Send("<color=blue>Configuration</color>", $"Configuration loaded");
+                                    Notifications.Send("SUCCESS", $"Configuration loaded", Color.green);
                                 }
                             }
                         }
-                        catch
-                        {
-                            Notifications.Send("<color=blue>Configuration</color>", $"Error loading configuration");
-                        }
+                        catch { }
                     }
                 }
             }
             else
-                Notifications.Send("<color=blue>Configuration</color>", $"No configuration saved");
+                Notifications.Send("ERROR", $"No configuration saved", Color.red);
         }
     }
 }

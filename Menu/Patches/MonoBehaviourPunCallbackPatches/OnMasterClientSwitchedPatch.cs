@@ -17,7 +17,9 @@ namespace Cronos.Menu.Patches.MonoBehaviourPunCallbackPatches
         private static void Prefix(Player newMasterClient)
         {
             if (newMasterClient == PhotonNetwork.LocalPlayer)
-                Notifications.Send("<color=yellow>Master</color>", "You are now master client");
+                Notifications.Send("MASTER", "You are now master client", Color.yellow);
+            else
+                Notifications.Send("MASTER", $"{newMasterClient.NickName} is now master client", Color.yellow);
         }
     }
 }

@@ -31,13 +31,13 @@ namespace Cronos.Menu.Patches.GorillaNotPatches
                     if (susReason != null)
                         susReason = null;
 
-                    Notifications.Send("<color=yellow>Report</color>", $"Anti Cheat attempted to report you");
+                    Notifications.Send("REPORT", $"Attempted to report you", Color.yellow);
                 }
                 else
-                    Notifications.Send("<color=yellow>Report</color>", $"Reported for {susReason}");
+                    Notifications.Send("REPORT", $"You", Color.yellow);
             }
             else
-                Notifications.Send("<color=yellow>Report</color>", $"{susNick} was reported for: {susReason}");
+                Notifications.Send("REPORT", $"Name: {susNick}", Color.yellow);
         }
     }
 }

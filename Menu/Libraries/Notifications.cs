@@ -32,39 +32,48 @@ public class Notifications
                 parent.transform.position = GorillaTagger.Instance.headCollider.transform.position + GorillaTagger.Instance.headCollider.transform.forward * 2.75f;
                 parent.transform.rotation = GorillaTagger.Instance.headCollider.transform.rotation;
 
+                if (Cronos.Menu.Management.Watch.Preferences.preferences[1])
+                {
+                    if (parent.layer != 19)
+                        parent.layer = 19;
+                }
+                else
+                    if (parent.layer != 0)
+                        parent.layer = 0;
+
                 if (!string.IsNullOrEmpty(text.text))
                 {
                     if (Time.time >= cooldown)
                     {
                         int index = text.text.IndexOf('\n');
                         if (index != -1)
-                        {
-                            index = text.text.IndexOf('\n', index + 1);
-                            text.text = index != -1 ? text.text.Substring(index + 1) : string.Empty;
-                        }
+                            text.text = text.text.Substring(index + 1);
                         else
                             text.text = string.Empty;
 
-                        cooldown = Time.time + 1f;
+                        cooldown = Time.time + 1.25f;
                     }
                 }
             }
         }
     }
 
-    public static void Send(string title, string notification)
+    public static void Send(string title, string notification, Color color)
     {
         if (parent != null)
         {
             if (parent.activeSelf)
             {
-                string display = (string.IsNullOrEmpty(text.text) ? string.Empty : "\n") + $"<size=0.7>{title}</size>\n{notification}";
+                string display = $"<color=grey>[</color><color={CronosColorUtilities.Color32ToHTML(color)}>{title}</color><color=grey>]</color> {notification}\n";
                 if (!last_notification.Contains(display))
                 {
-                    text.text += display;
-                    last_notification = display;
+                    if (!text.text.Contains(display))
+                    {
+                        text.text += display;
+                        last_notification = display;
 
-                    cooldown = Time.time + 1f;
+                        cooldown = Time.time + 1.25f;
+                    }
                 }
             }
         }

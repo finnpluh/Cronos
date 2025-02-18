@@ -18,20 +18,18 @@ namespace Cronos.Menu.Mods.Visual
             "\n-Click <color=grey><RIGHT-SECONDARY></color> to toggle your current module's tooltip" +
             "\n-Click <color=grey><RIGHT-PRIMARY></color> to toggle your current module" +
             "\n<align=center>Contributors</align>" +
-            "\n<color=grey>Finn, Lars, Misa, Blaku, & Ventern</color>";
+            "\n<color=grey>Finn, Misa, Blaku, & Ventern</color>";
         private static string changelog =
-            "-Added Monkeye Gun, Monkeye All, Fling Rope Gun, Fling Ropes All, Spam Team Color, Reset Soccer Game, & Set Soccer Score" +
-            "\n-Added Grace Period patches (Ventern)" +
-            "\n-Added Ventern to contributors text" +
-            "\n-Added categories" +
-            "\n-Added Unsafe mod detections" +
-            "\n-Fixed blurry text (Nametags, Notifications, etc)" +
-            "\n-Remade Notifications" +
-            "\n-Removed Utilla dependency" +
-            "\n-Removed Lars from contributors text" +
-            "\n-Removed category text on buttons";
+            "-Added Statistics HUD, Box ESP, Distance Text, Change Region, Panic, Join MOD, & Join MODS" +
+            "\n-Added Master mod detections" +
+            "\n-Added OnRoomPropertiesUpdate patch" +
+            "\n-Added modes to Nametags (Simple, Fancy)" +
+            "\n-Made notifications not repeat" +
+            "\n-Made gun colors react to what youre shooting at" +
+            "\n-Fixed issues with text mods not working in certain maps";
         private static string previous = string.Empty;
         private static string motd = string.Empty;
+
         private static List<GameObject> gameobjects = new List<GameObject>();
         private static Material material = new Material(Shader.Find("GorillaTag/UberShader"));
         private static List<Material> materials = new List<Material>();

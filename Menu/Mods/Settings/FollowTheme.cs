@@ -10,8 +10,8 @@ namespace Cronos.Menu.Mods.Settings
     {
         public static void Update(bool toggled)
         {
-            if (Cronos.Menu.Management.Watch.Settings.follow_theme != toggled)
-                Cronos.Menu.Management.Watch.Settings.follow_theme = toggled;
+            if (Cronos.Menu.Management.Watch.Preferences.preferences[3] != toggled)
+                Cronos.Menu.Management.Watch.Preferences.preferences[3] = toggled;
         }
     }
 }

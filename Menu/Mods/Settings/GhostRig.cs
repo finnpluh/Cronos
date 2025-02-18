@@ -10,8 +10,8 @@ namespace Cronos.Menu.Mods.Settings
     {
         public static void Update(bool toggled)
         {
-            if (Cronos.Menu.Management.Watch.Settings.ghost_rig != toggled)
-                Cronos.Menu.Management.Watch.Settings.ghost_rig = toggled;
+            if (Cronos.Menu.Management.Watch.Preferences.preferences[2] != toggled)
+                Cronos.Menu.Management.Watch.Preferences.preferences[2] = toggled;
         }
     }
 }

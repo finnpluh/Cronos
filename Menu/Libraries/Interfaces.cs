@@ -18,13 +18,14 @@ namespace Cronos.Menu.Libraries
             RectTransform transform = parent.GetComponent<RectTransform>();
             transform.sizeDelta = new Vector2(1.75f, 1.75f);
 
-            TextMeshPro motd = GameObject.Find("motdtext").GetComponent<TextMeshPro>();
+            TextMeshPro nametag = GorillaTagger.Instance.offlineVRRig.playerText1;
 
+            text.font = nametag.font;
+            text.characterSpacing = nametag.characterSpacing;
             text.lineSpacing = 50f;
-            text.font = motd.font;
-            text.characterSpacing = motd.characterSpacing;
             text.alignment = alignment;
             text.fontSize = size;
+            text.text = string.Empty;
 
             parent.transform.LookAt(Camera.main.transform);
             parent.transform.Rotate(0f, 180f, 0f);

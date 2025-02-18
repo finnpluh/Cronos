@@ -4,7 +4,7 @@ namespace Cronos.Menu.Management.Watch
 {
     public class Button
     {
-        public enum Statuses { Functional, Broken, Unsafe }
+        public enum Statuses { Functional, Broken, Unsafe, Master }
         public string title { get; set; }
         public string[] options { get; set; }
         public string tooltip { get; set; }

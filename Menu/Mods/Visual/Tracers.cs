@@ -124,7 +124,7 @@ namespace Cronos.Menu.Mods.Visual
                                 if (infected.a != opacity)
                                     infected.a = opacity;
 
-                                Color normal = Cronos.Menu.Management.Watch.Settings.follow_theme ? Cronos.Menu.Management.Watch.Cronos.theme : Color.green;
+                                Color normal = Cronos.Menu.Management.Watch.Preferences.preferences[3] ? Cronos.Menu.Management.Watch.Cronos.theme : Color.green;
                                 if (normal.a != opacity)
                                     normal.a = opacity;
 
@@ -147,7 +147,7 @@ namespace Cronos.Menu.Mods.Visual
                             }
                             else if (GorillaGameManager.instance.GameType() == GameModeType.Casual || GorillaGameManager.instance.GameType() == GameModeType.Guardian)
                             {
-                                Color skin = Cronos.Menu.Management.Watch.Settings.follow_theme ? Cronos.Menu.Management.Watch.Cronos.theme : vrrig.playerColor;
+                                Color skin = Cronos.Menu.Management.Watch.Preferences.preferences[3] ? Cronos.Menu.Management.Watch.Cronos.theme : vrrig.playerColor;
                                 if (skin.a != opacity)
                                     skin.a = opacity;
 
@@ -204,7 +204,7 @@ namespace Cronos.Menu.Mods.Visual
                             }
                             else if (GorillaGameManager.instance.GameType() == GameModeType.FreezeTag)
                             {
-                                Color alive = Cronos.Menu.Management.Watch.Settings.follow_theme ? Cronos.Menu.Management.Watch.Cronos.theme : Color.green;
+                                Color alive = Cronos.Menu.Management.Watch.Preferences.preferences[3] ? Cronos.Menu.Management.Watch.Cronos.theme : Color.green;
                                 if (alive.a != opacity)
                                     alive.a = opacity;
 
@@ -230,7 +230,7 @@ namespace Cronos.Menu.Mods.Visual
                                 }
                             }
 
-                            if (Cronos.Menu.Management.Watch.Settings.ghost_mode)
+                            if (Cronos.Menu.Management.Watch.Preferences.preferences[1])
                             {
                                 if (tracer.layer != 19)
                                     tracer.layer = 19;

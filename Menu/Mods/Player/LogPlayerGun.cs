@@ -40,13 +40,13 @@ namespace Cronos.Menu.Mods.Player
                         switch (button.optionIndex)
                         {
                             case 0:
-                                Notifications.Send("<color=purple>Player</color>", $"Player ID for {vrrig.Creator.NickName}: {vrrig.Creator.UserId}");
+                                Notifications.Send("PLAYER", $"Player ID for {vrrig.Creator.NickName}: {vrrig.Creator.UserId}", Color.cyan);
                                 break;
                             case 1:
-                                Notifications.Send("<color=purple>Player</color>", $"Color for {vrrig.Creator.NickName}: {Mathf.Floor(vrrig.playerColor.r * 9f)}, {Mathf.Floor(vrrig.playerColor.g * 9f)}, {Mathf.Floor(vrrig.playerColor.b * 9f)}");
+                                Notifications.Send("PLAYER", $"Color for {vrrig.Creator.NickName}: {Mathf.Floor(vrrig.playerColor.r * 9f)}, {Mathf.Floor(vrrig.playerColor.g * 9f)}, {Mathf.Floor(vrrig.playerColor.b * 9f)}", Color.cyan);
                                 break;
                             case 2:
-                                Notifications.Send("<color=purple>Player</color>", $"{vrrig.Creator.NickName} has {vrrig.concatStringOfCosmeticsAllowed.Count(period => period == '.')} cosmetics");
+                                Notifications.Send("PLAYER", $"{vrrig.Creator.NickName} has {vrrig.concatStringOfCosmeticsAllowed.Count(period => period == '.')} cosmetics", Color.cyan);
                                 break;
                         }
 

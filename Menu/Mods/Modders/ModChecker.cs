@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Cronos.Menu.Mods.Modders
 {
@@ -21,21 +22,21 @@ namespace Cronos.Menu.Mods.Modders
                     {
                         Photon.Realtime.Player player = vrrig.Creator.GetPlayerRef();
                         if (player.CustomProperties.ContainsKey("genesis"))
-                            Notifications.Send("<color=purple>Mod Checker</color>", $"{player.NickName} is using Genesis");
+                            Notifications.Send("CRONOS", $"{player.NickName} is using Genesis", Color.magenta);
                         else if (player.CustomProperties.ContainsKey("void"))
-                            Notifications.Send("<color=purple>Mod Checker</color>", $"{player.NickName} is using Void Buddies");
+                            Notifications.Send("CRONOS", $"{player.NickName} is using Void Buddies", Color.magenta);
                         else if (player.CustomProperties.ContainsKey("6XpyykmrCthKhFeUfkYGxv7xnXpoe2"))
-                            Notifications.Send("<color=purple>Mod Checker</color>", $"{player.NickName} is using Colossal Cheat Menu");
+                            Notifications.Send("CRONOS", $"{player.NickName} is using Colossal Cheat Menu", Color.magenta);
                         else if (player.CustomProperties.ContainsKey("cronos"))
-                            Notifications.Send("<color=purple>Mod Checker</color>", $"{player.NickName} is using Cronos");
+                            Notifications.Send("CRONOS", $"{player.NickName} is using Cronos", Color.magenta);
                         else if (player.CustomProperties.ContainsKey("GrateVersion"))
-                            Notifications.Send("<color=purple>Mod Checker</color>", $"{player.NickName} is using Grate");
+                            Notifications.Send("CRONOS", $"{player.NickName} is using Grate", Color.magenta);
                         else if (player.CustomProperties.ContainsKey("BananaOS"))
-                            Notifications.Send("<color=purple>Mod Checker</color>", $"{player.NickName} is using BananaOS");
+                            Notifications.Send("CRONOS", $"{player.NickName} is using BananaOS", Color.magenta);
                         else if (player.CustomProperties.ContainsKey("GorillaShirts"))
-                            Notifications.Send("<color=purple>Mod Checker</color>", $"{player.NickName} is using GorillaShirts");
+                            Notifications.Send("CRONOS", $"{player.NickName} is using GorillaShirts", Color.magenta);
                         else
-                            Notifications.Send("<color=purple>Mod Checker</color>", $"Noone else in your room is using mods");
+                            Notifications.Send("CRONOS", $"Noone else in your room is using mods", Color.magenta);
                     }
                 }
             }

@@ -30,7 +30,7 @@ namespace Cronos.Menu.Mods.Saftey
                                 float distance = 0.5f + PhotonNetwork.GetPing() / 250;
                                 if (Vector3.Distance(vrrig.rightHandTransform.transform.position, lines.reportButton.gameObject.transform.position) < distance || Vector3.Distance(vrrig.leftHandTransform.transform.position, lines.reportButton.gameObject.transform.position) < distance)
                                 {
-                                    Notifications.Send("<color=purple>Anti Report</color>", $"Disconnected, {vrrig.Creator.NickName} tried to report you");
+                                    Notifications.Send("CRONOS", $"Disconnected, {vrrig.Creator.NickName} tried to report you", Color.magenta);
                                     NetworkSystem.Instance.ReturnToSinglePlayer();
                                 }
                             }
